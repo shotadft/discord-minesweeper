@@ -24,12 +24,12 @@
 <body>
     <h1>Discord用マインスイーパー生成機</h1>
     <p>マインスイーパーをMarkdown形式で出力するサイトです。隠されている部分をクリックして遊んで下さい。</p>
-    <form>
+    <form onsubmit="return generate();">
         <label>幅<input id="width" type="number" value="9" /></label>x<label>高さ<input id="height" type="number"
                 value="9" /></label>
         <label>地雷<input id="count" type="number" value="10" />個</label><br>
-        <button type="submit" onsubmit="return generate();">生成</button>
-        <button type="reset" onsubmit="return clear();">生成</button>
+        <button type="submit">生成</button>
+        <button type="button" onclick="clear()">リセット</button>
         <button type="button" onclick="copy()">コピー</button>
         <br />
         <textarea id="output" rows="16" cols="100" readonly></textarea>
