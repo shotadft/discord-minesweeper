@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Discord用マインスイーパー</title>
-        <style type="text/css">
-            input[type="text"]
-            {
-                width: 5em;
-                text-align: right;
-            }
-            table
-            {
-                border-collapse: collapse;
-            }
-            td
-            {
-                width: 1.5em;
-                height: 1.5em;
-                border: 1px solid black;
-                text-align: center;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Discord用マインスイーパー生成機</h1>
-        <p>マインスイーパーをMarkdown形式で出力するサイトです。隠されている部分をクリックして遊んで下さい。</p>
-        <label>幅<input id="width" type="number" value="9" /></label>x<label>高さ<input id="height" type="number" value="9" /></label>
+<head>
+    <meta charset="utf-8" />
+    <title>Discord用マインスイーパー</title>
+    <style type="text/css">
+        input[type="number"] {
+            width: 5em;
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 1.5em;
+            height: 1.5em;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Discord用マインスイーパー生成機</h1>
+    <p>マインスイーパーをMarkdown形式で出力するサイトです。隠されている部分をクリックして遊んで下さい。</p>
+    <form>
+        <label>幅<input id="width" type="number" value="9" /></label>x<label>高さ<input id="height" type="number"
+                value="9" /></label>
         <label>地雷<input id="count" type="number" value="10" />個</label>
         <button onclick="generate()">生成</button>
         <button onclick="copy()">コピー</button>
@@ -33,65 +34,60 @@
         <textarea id="output" rows="16" cols="100" readonly></textarea>
         <p id="character-count"></p>
         <span>(Discordは2000文字まで)</span>
-        <table id="table"></table>
-        <p>forked from <a href="https://github.com/Ibemu/discord-minesweeper">Ibemu</a></p>
-        <script type="text/javascript">
-            function getRandomInt(max)
-            {
-                return Math.floor(Math.random() * Math.floor(max));
-            }
-            function generate()
-            {
-                var output = document.getElementById("output");
-                var chcount = document.getElementById("character-count");
-                var table = document.getElementById("table");
-                var width = parseInt(document.getElementById("width").value);
-                var height = parseInt(document.getElementById("height").value);
-                var count = parseInt(document.getElementById("count").value);
-                if(count > (width - 1) * (height - 1))
-                    count = (width - 1) * (height - 1);
+        <details>
+            <summary>生成結果</summary>
+            <table id="table"></table>
+        </details>
+    </form>
+    <p>forked from <a href="https://github.com/Ibemu/discord-minesweeper">Ibemu</a></p>
+    <script type="text/javascript">
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        function generate() {
+            var output = document.getElementById("output");
+            var chcount = document.getElementById("character-count");
+            var table = document.getElementById("table");
+            var width = parseInt(document.getElementById("width").value);
+            var height = parseInt(document.getElementById("height").value);
+            var count = parseInt(document.getElementById("count").value);
+            if (count > (width - 1) * (height - 1))
+                count = (width - 1) * (height - 1);
 
-                var board = new Array(height);
-                for(var r = 0; r < height; ++r)
-                    board[r] = new Array(width).fill(0);
-                while(table.rows[0]) table.deleteRow(0);
+            var board = new Array(height);
+            for (var r = 0; r < height; ++r)
+                board[r] = new Array(width).fill(0);
+            while (table.rows[0]) table.deleteRow(0);
 
-                for(var i = 0; i < count; ++i)
-                {
-                    var placing = true;
-                    while(placing)
-                    {
-                        var r = getRandomInt(height);
-                        var c = getRandomInt(width);
-                        if(board[r][c] >= 0)
-                            placing = false;
-                    }
-                    board[r][c] = -10000;
-                    for(var lr = r - 1; lr <= r + 1; ++lr)
-                    {
-                        if(lr < 0 || height <= lr) continue;
-                        for(var lc = c - 1; lc <= c + 1; ++ lc)
-                        {
-                            if(lc < 0 || width <= lc) continue;
-                            board[lr][lc]++;
-                        }
+            for (var i = 0; i < count; ++i) {
+                var placing = true;
+                while (placing) {
+                    var r = getRandomInt(height);
+                    var c = getRandomInt(width);
+                    if (board[r][c] >= 0)
+                        placing = false;
+                }
+                board[r][c] = -10000;
+                for (var lr = r - 1; lr <= r + 1; ++lr) {
+                    if (lr < 0 || height <= lr) continue;
+                    for (var lc = c - 1; lc <= c + 1; ++lc) {
+                        if (lc < 0 || width <= lc) continue;
+                        board[lr][lc]++;
                     }
                 }
-                
-                var text = "";
-                for(var r = 0; r < height; ++r)
-                {
-                    var tr = table.insertRow();
-                    for(var c = 0; c < width; ++c)
-                    {
-                        var td = tr.insertCell();
-                        if(board[r][c] < 0)
-                            td.appendChild(document.createTextNode("x"));
-                        else if(board[r][c] > 0)
-                            td.appendChild(document.createTextNode(board[r][c]));
+            }
 
-                        switch(board[r][c])
-                        {
+            var text = "";
+            for (var r = 0; r < height; ++r) {
+                var tr = table.insertRow();
+                for (var c = 0; c < width; ++c) {
+                    var td = tr.insertCell();
+                    if (board[r][c] < 0)
+                        td.appendChild(document.createTextNode("x"));
+                    else if (board[r][c] > 0)
+                        td.appendChild(document.createTextNode(board[r][c]));
+
+                    switch (board[r][c]) {
                         case 0:
                             text += "||:zero:||";
                             break;
@@ -122,21 +118,20 @@
                         default:
                             text += "||:bomb:||";
                             break;
-                        }
                     }
-                    text += "\n";
                 }
-                output.value = text;
-                chcount.innerText = text.length + " 文字";
+                text += "\n";
             }
-            function copy()
-            {
-                var output = document.getElementById("output");
-                output.selectionStart = 0;
-                output.selectionEnd = output.value.length;
-                output.focus();
-                document.execCommand('copy');
-            }
-        </script>
-    </body>
+            output.value = text;
+            chcount.innerText = text.length + " 文字";
+        }
+        function copy() {
+            var output = document.getElementById("output");
+            output.selectionStart = 0;
+            output.selectionEnd = output.value.length;
+            output.focus();
+            document.execCommand('copy');
+        }
+    </script>
+</body>
 </html>
