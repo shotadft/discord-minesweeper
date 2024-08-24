@@ -135,7 +135,7 @@
         }
 
         function copy() {
-            const output = `${$('output').val()}`;
+            const output = `${$('#output').val()}`;
             navigator.clipboard.writeText(output).then(
                 () => {
                     console.log("Copy Success");
