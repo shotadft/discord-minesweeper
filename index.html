@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>マインスイーパー</title>
+        <title>Discord用マインスイーパー</title>
         <style type="text/css">
             input[type="text"]
             {
@@ -24,14 +24,15 @@
     </head>
     <body>
         <h1>Discord用マインスイーパー生成機</h1>
-        幅<input id="width" type="text" value="9" />×高さ<input id="height" type="text" value="9" />
-        地雷<input id="count" type="text" value="10" />個
+        <p>マインスイーパーをMarkdown形式で出力するサイトです。隠されている部分をクリックして遊んで下さい。</p>
+        <label>幅<input id="width" type="number" value="9" /></label>x<label>高さ<input id="height" type="number" value="9" /></label>
+        <label>地雷<input id="count" type="number" value="10" />個</label>
         <button onclick="generate()">生成</button>
         <button onclick="copy()">コピー</button>
         <br />
-        <textarea id="output" rows="16" cols="100" readonly="readonly" ></textarea>
+        <textarea id="output" rows="16" cols="100" readonly></textarea>
         <p id="character-count"></p>
-        <p>Discordは2000文字まで</p>
+        <span>(Discordは2000文字まで)</span>
         <table id="table"></table>
         <script type="text/javascript">
             function getRandomInt(max)
