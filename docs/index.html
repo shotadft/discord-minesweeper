@@ -37,12 +37,12 @@
             return Math.floor(Math.random() * Math.floor(max));
         }
         function generate() {
-            var output = document.getElementById("output");
+            var output = `${$('#output').val()}`;
             var chcount = document.getElementById("character-count");
             var table = document.getElementById("table");
-            var width = parseInt(document.getElementById("width").value);
-            var height = parseInt(document.getElementById("height").value);
-            var count = parseInt(document.getElementById("count").value);
+            const width = parseInt($('#width').val());
+            const height = parseInt($('#height').val());
+            const count = parseInt($('#count').val());
             if (count > (width - 1) * (height - 1))
                 count = (width - 1) * (height - 1);
 
@@ -114,7 +114,7 @@
                 }
                 text += "\n";
             }
-            output.value = text;
+            output = text;
             chcount.innerText = text.length + " 文字";
 
             return false;
