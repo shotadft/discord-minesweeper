@@ -17,7 +17,7 @@
                     type="number" value="9" required /></label>
             <label>地雷<input id="count" type="number" value="10" required />個</label><br>
             <button type="submit">生成</button>
-            <button type="button" onclick="clear()">リセット</button>
+            <button type="reset" onclick="clear()">リセット</button>
             <button type="button" onclick="copy()">コピー</button>
             <br />
             <textarea id="output" rows="16" cols="100" placeholder="出力結果" readonly></textarea>
@@ -35,6 +35,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript">function getRandomInt(a){return Math.floor(Math.random()*Math.floor(a))}function generate(){var a=$("#output"),b=document.getElementById("character-count"),d=document.getElementById("table");const e=parseInt($("#width").val()),f=parseInt($("#height").val()),g=parseInt($("#count").val());g>(e-1)*(f-1)&&(g=(e-1)*(f-1));for(var h=Array(f),j=0;j<f;++j)h[j]=Array(e).fill(0);for(;d.rows[0];)d.deleteRow(0);for(var k,l=0;l<g;++l){for(k=!0;k;){var j=getRandomInt(f),m=getRandomInt(e);0<=h[j][m]&&(k=!1)}h[j][m]=-1e4;for(var n=j-1;n<=j+1;++n)if(!(0>n||f<=n))for(var o=m-1;o<=m+1;++o)0>o||e<=o||h[n][o]++}for(var p,q="",j=0;j<f;++j){p=d.insertRow();for(var s,m=0;m<e;++m)switch(s=p.insertCell(),0>h[j][m]?s.appendChild(document.createTextNode("x")):0<h[j][m]&&s.appendChild(document.createTextNode(h[j][m])),h[j][m]){case 0:q+="||:zero:||";break;case 1:q+="||:one:||";break;case 2:q+="||:two:||";break;case 3:q+="||:three:||";break;case 4:q+="||:four:||";break;case 5:q+="||:five:||";break;case 6:q+="||:six:||";break;case 7:q+="||:seven:||";break;case 8:q+="||:eight:||";break;default:q+="||:bomb:||";}q+="\n"}return a.val(q),b.innerText=q.length+" \u6587\u5B57",!1}function copy(){const a=`${$("#output").val()}`;navigator.clipboard.writeText(a).then(()=>{console.log("Copy Success")})}</script>
+    <script type="text/javascript">function getRandomInt(a){return Math.floor(Math.random()*Math.floor(a))}function generate(){var a=$("#output"),b=document.getElementById("character-count"),d=document.getElementById("table");const e=parseInt($("#width").val()),f=parseInt($("#height").val()),g=parseInt($("#count").val());g>(e-1)*(f-1)&&(g=(e-1)*(f-1));for(var h=Array(f),j=0;j<f;++j)h[j]=Array(e).fill(0);for(;d.rows[0];)d.deleteRow(0);for(var k,l=0;l<g;++l){for(k=!0;k;){var j=getRandomInt(f),m=getRandomInt(e);0<=h[j][m]&&(k=!1)}h[j][m]=-1e4;for(var n=j-1;n<=j+1;++n)if(!(0>n||f<=n))for(var o=m-1;o<=m+1;++o)0>o||e<=o||h[n][o]++}for(var p,q="",j=0;j<f;++j){p=d.insertRow();for(var s,m=0;m<e;++m)switch(s=p.insertCell(),0>h[j][m]?s.appendChild(document.createTextNode("x")):0<h[j][m]&&s.appendChild(document.createTextNode(h[j][m])),h[j][m]){case 0:q+="||:zero:||";break;case 1:q+="||:one:||";break;case 2:q+="||:two:||";break;case 3:q+="||:three:||";break;case 4:q+="||:four:||";break;case 5:q+="||:five:||";break;case 6:q+="||:six:||";break;case 7:q+="||:seven:||";break;case 8:q+="||:eight:||";break;default:q+="||:bomb:||";}q+="\n"}return a.val(q),b.innerText=q.length+" \u6587\u5B57",!1}function copy(){const a=`${$("#output").val()}`;navigator.clipboard.writeText(a).then(()=>{console.log("Copy Success")})}function clear(){$("#output").val("")}
+    </script>
 </body>
 </html>
