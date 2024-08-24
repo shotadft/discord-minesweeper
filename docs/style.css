@@ -1,0 +1,15 @@
+input[type="number"] {
+    width: 5em;
+    text-align: right;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid black;
+    text-align: center;
+}
