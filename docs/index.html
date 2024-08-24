@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Discord用マインスイーパー</title>
@@ -21,6 +22,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Discord用マインスイーパー生成機</h1>
     <p>マインスイーパーをMarkdown形式で出力するサイトです。隠されている部分をクリックして遊んで下さい。</p>
@@ -41,6 +43,9 @@
         </details>
     </form>
     <p>forked from <a href="https://github.com/Ibemu/discord-minesweeper">Ibemu</a></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
@@ -130,14 +135,12 @@
         }
 
         function copy() {
-            var output = document.getElementById("output");
-            output.selectionStart = 0;
-            output.selectionEnd = output.value.length;
-            output.focus();
+            const output = `${$('output').val()}`;
             navigator.clipboard.writeText(output).then(
-                (clipText) => ("" += clipText)
+                () => console.log("Copy Success")
             );
         }
     </script>
 </body>
+
 </html>
