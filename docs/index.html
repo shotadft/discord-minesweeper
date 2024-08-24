@@ -37,7 +37,7 @@
             return Math.floor(Math.random() * Math.floor(max));
         }
         function generate() {
-            var output = `${$('#output').val()}`;
+            var output = $('#output');
             var chcount = document.getElementById("character-count");
             var table = document.getElementById("table");
             const width = parseInt($('#width').val());
@@ -114,7 +114,7 @@
                 }
                 text += "\n";
             }
-            output = text;
+            output.val(text);
             chcount.innerText = text.length + " 文字";
 
             return false;
