@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord用マインスイーパー</title>
-    <link rel="stylesheet" href="https://www.shotadft.com/css/sanitize.css">
-    <link rel="stylesheet" href="style.css">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@shotadft">
-    <meta property="og:title" content="Discord用マインスイーパー生成機">
-    <meta property="og:url" content="https://www.shotadft.com/discord-minesweeper/">
-    <meta property="og:locale" content="ja_JP">
-</head>
-<body>
-    <main>
-        <h1>Discord用マインスイーパー生成機</h1>
-        <p>マインスイーパーをMarkdown形式で出力するサイトです。隠されている部分をクリックして遊んで下さい。</p>
-        <form onsubmit="return generate()">
-            <label>幅<input id="width" type="number" value="9" required /></label>&nbsp;<label>高さ<input id="height"
-                    type="number" value="9" required /></label>
-            <label>地雷<input id="count" type="number" value="10" required />個</label><br>
-            <button type="submit">生成</button>
-            <button type="reset" onclick="clear()">リセット</button>
-            <button type="button" onclick="copy()">コピー</button>
-            <br />
-            <textarea id="output" rows="16" cols="100" placeholder="出力結果" readonly></textarea>
-            <p>
-                <span id="character-count"></span>
-                <span>(Discordは2000文字まで受け付けます)</span>
-            </p>
-            <details>
-                <summary>生成結果</summary>
-                <table id="table"></table>
-            </details>
-        </form>
-        <p>forked from <a href="https://github.com/Ibemu/discord-minesweeper">Ibemu</a></p>
-        <p>Hosted by <a href="https://www.shotadft.com/">shotadft.com</a></p>
-    </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript">function getRandomInt(a){return Math.floor(Math.random()*Math.floor(a))}function generate(){var a=$("#output"),b=document.getElementById("character-count"),d=document.getElementById("table");const e=parseInt($("#width").val()),f=parseInt($("#height").val()),g=parseInt($("#count").val());g>(e-1)*(f-1)&&(g=(e-1)*(f-1));for(var h=Array(f),j=0;j<f;++j)h[j]=Array(e).fill(0);for(;d.rows[0];)d.deleteRow(0);for(var k,l=0;l<g;++l){for(k=!0;k;){var j=getRandomInt(f),m=getRandomInt(e);0<=h[j][m]&&(k=!1)}h[j][m]=-1e4;for(var n=j-1;n<=j+1;++n)if(!(0>n||f<=n))for(var o=m-1;o<=m+1;++o)0>o||e<=o||h[n][o]++}for(var p,q="",j=0;j<f;++j){p=d.insertRow();for(var s,m=0;m<e;++m)switch(s=p.insertCell(),0>h[j][m]?s.appendChild(document.createTextNode("x")):0<h[j][m]&&s.appendChild(document.createTextNode(h[j][m])),h[j][m]){case 0:q+="||:zero:||";break;case 1:q+="||:one:||";break;case 2:q+="||:two:||";break;case 3:q+="||:three:||";break;case 4:q+="||:four:||";break;case 5:q+="||:five:||";break;case 6:q+="||:six:||";break;case 7:q+="||:seven:||";break;case 8:q+="||:eight:||";break;default:q+="||:bomb:||";}q+="\n"}return a.val(q),b.innerText=q.length+" \u6587\u5B57",!1}function copy(){const a=`${$("#output").val()}`;navigator.clipboard.writeText(a).then(()=>{console.log("Copy Success")})}function clear(){$("#output").val("")}</script>
-</body>
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Discord用マインスイーパー</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@shotadft">
+        <meta property="og:title" content="Discord用マインスイーパー生成機">
+        <meta property="og:locale" content="ja_JP">
+    </head>
+    <body>
+        <main>
+            <h1>Discord用マインスイーパー生成機</h1>
+            <p>マインスイーパーをMarkdown形式で出力するサイトです。隠されている部分をクリックして遊んで下さい。</p>
+            <form onsubmit="return generate()">
+                <div class="input-group">
+                    <label>幅<input id="width" type="number" value="9" required /></label>
+                    <label>高さ<input id="height" type="number" value="9" required /></label>
+                    <label>地雷<input id="count" type="number" value="10" required /></label>
+                </div>
+                <div class="button-group">
+                    <button type="submit">生成</button>
+                    <button type="reset" onclick="clear()">リセット</button>
+                    <button type="button" onclick="copy()">コピー</button>
+                </div>
+                <textarea id="output" rows="16" cols="100" placeholder="出力結果" readonly></textarea>
+                <details id="result-details" style="display:none;">
+                    <summary>生成結果</summary>
+                    <table id="table"></table>
+                </details>
+                <div class="preview-label">おためしスペース</div>
+                <div id="output-markdown" class="output-markdown" aria-label="マークダウン絵文字表示"></div>
+                <p>
+                    <span id="character-count"></span>
+                    <span>(Discordは2000文字まで受け付けます)</span>
+                </p>
+            </form>
+            <p>forked from <a href="https://github.com/Ibemu/discord-minesweeper">Ibemu</a></p>
+            <p>Hosted by <a href="https://www.shotadft.com/">shotadft.com</a></p>
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script defer type="text/javascript">function getRandomInt(a){return Math.floor(Math.random()*Math.floor(a))}function generateMinesweeper(w,h,m){m=Math.min(m,(w-1)*(h-1));const b=Array.from({length:h},()=>Array(w).fill(0));let p=0;while(p<m){const y=getRandomInt(h),x=getRandomInt(w);if(b[y][x]<0)continue;b[y][x]=-1e4;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const ny=y+dy,nx=x+dx;if(ny>=0&&ny<h&&nx>=0&&nx<w&&b[ny][nx]>=0)b[ny][nx]++}p++}return b}function boardToMarkdown(b){const e=[":zero:",":one:",":two:",":three:",":four:",":five:",":six:",":seven:",":eight:"];return b.map(r=>r.map(c=>c<0?"||:bomb:||":`||${e[c]||":zero:"}||`).join("")).join("\n")}function renderTable(b,t){while(t.rows[0])t.deleteRow(0);b.forEach(r=>{const tr=t.insertRow();r.forEach(c=>{const td=tr.insertCell();td.textContent=c<0?"x":(c>0?c:"")})})}function updateCharacterCount(t,e){e.innerText=`${t.length} 文字`}function showResultDetails(s){document.getElementById("result-details").style.display=s?"block":"none"}function markdownToDiscordPreview(md){let html=md.replace(/\|\|([\s\S]*?)\|\|/g,function(_,i){return'<span class="spoiler">'+i+'</span>'});const m={':zero:':'\u0030\uFE0F\u20E3',':one:':'\u0031\uFE0F\u20E3',':two:':'\u0032\uFE0F\u20E3',':three:':'\u0033\uFE0F\u20E3',':four:':'\u0034\uFE0F\u20E3',':five:':'\u0035\uFE0F\u20E3',':six:':'\u0036\uFE0F\u20E3',':seven:':'\u0037\uFE0F\u20E3',':eight:':'\u0038\uFE0F\u20E3',':nine:':'\u0039\uFE0F\u20E3',':bomb:':'\uD83D\uDCA3',':question:':'\u2753',':exclamation:':'\u2757'};html=html.replace(/:([a-z]+):/g,function(x){return m[x]?'<span class="emoji">'+eval('"'+m[x]+'"')+'</span>':x});html=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');html=html.replace(/\*(.*?)\*/g,'<em>$1</em>');html=html.replace(/~~(.*?)~~/g,'<del>$1</del>');html=html.replace(/`([^`]+)`/g,'<code>$1</code>');html=html.replace(/^&gt; (.*)$/gm,'<blockquote>$1</blockquote>');html=html.replace(/\n/g,"<br>");return html}function generate(){const w=parseInt($("#width").val()),h=parseInt($("#height").val()),m=parseInt($("#count").val()),b=generateMinesweeper(w,h,m),md=boardToMarkdown(b);$("#output").val(md);updateCharacterCount(md,document.getElementById("character-count"));renderTable(b,document.getElementById("table"));showResultDetails(!0);document.getElementById("output-markdown").innerHTML=markdownToDiscordPreview(md);return!1}function copy(){const t=$("#output").val();navigator.clipboard.writeText(t).then(()=>{console.log("Copy Success")})}function clear(){$("#output").val("");updateCharacterCount("",document.getElementById("character-count"));showResultDetails(!1);renderTable([],document.getElementById("table"));document.getElementById("output-markdown").innerHTML=""}$(document).on('click','.spoiler',function(){$(this).toggleClass('revealed')});</script>
+    </body>
 </html>

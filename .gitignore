@@ -1,0 +1,24 @@
+# OSごとの不要ファイル
+.DS_Store
+Thumbs.db
+
+# node/npm関連
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# VSCodeなどエディタ設定
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Macのゴミ
+._*
+
+# その他
+/dist/
+/build/
+.env
+*.log 

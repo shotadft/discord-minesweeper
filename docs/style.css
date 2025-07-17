@@ -1,61 +1,387 @@
-@charset "UTF-8";
-@import url("https://www.shotadft.com/fonts.css");
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-size: 14px;
-    color: #333;
-    line-height: 1em
+    font-size: 15px;
+    color: #222;
+    background: #f4f6fa;
+    line-height: 1.6;
+    margin: 0;
 }
 
 main {
-    background-color: #f8f8f8;
-    margin: 2px 8px 8px 8px;
+    background: #fff;
+    max-width: 540px;
+    margin: 0;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    padding: 32px 20px 24px 20px;
+}
+
+h1 {
+    font-size: 1.7em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.02em;
+    color: #1976d2;
+    text-align: center;
+}
+
+p {
+    margin: 0.7em 0 1.2em 0;
+    color: #444;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1em;
+    align-items: center;
+}
+
+label {
+    font-size: 1em;
+    margin: 0 0.7em 0 0;
+    color: #333;
 }
 
 input[type="number"] {
-    width: 5em;
+    width: 4.5em;
     text-align: right;
+    padding: 6px 8px;
+    border: 1px solid #b0b8c1;
+    border-radius: 6px;
+    background: #f9fafb;
+    font-size: 1em;
+    transition: border 0.2s;
+}
+
+input[type="number"]:focus {
+    border: 1.5px solid #1976d2;
+    outline: none;
+    background: #fff;
+}
+
+button {
+    padding: 7px 18px;
+    margin: 0 0.2em;
+    border: none;
+    border-radius: 6px;
+    background: #1976d2;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+button[type="reset"] {
+    background: #b0b8c1;
+}
+
+button[type="button"] {
+    background: #43a047;
+}
+
+button:hover,
+button:focus {
+    background: #1565c0;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.13);
+}
+
+button[type="reset"]:hover,
+button[type="reset"]:focus {
+    background: #8a929a;
+}
+
+button[type="button"]:hover,
+button[type="button"]:focus {
+    background: #388e3c;
 }
 
 textarea {
-    font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-    padding: 10px;
+    font-family: inherit;
+    padding: 12px;
     max-width: 100%;
+    width: 100%;
     line-height: 1.5;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999;
-    background-color: #fff
+    border-radius: 8px;
+    border: 1.5px solid #b0b8c1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    background: #f9fafb;
+    font-size: 1em;
+    margin-top: 0.5em;
+    transition: border 0.2s;
+}
+
+textarea:focus {
+    border: 1.5px solid #1976d2;
+    background: #fff;
+    outline: none;
 }
 
 textarea#output {
     resize: none;
 }
 
+#character-count {
+    color: #1976d2;
+    font-weight: 500;
+    margin-right: 0.5em;
+}
+
+details {
+    margin-top: 1em;
+    background: #f4f6fa;
+    border-radius: 8px;
+    padding: 0.7em 1em;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #1976d2;
+    outline: none;
+}
+
 table {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 2px;
+    margin: 0.7em auto 0 auto;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 td {
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid black;
+    width: 2em;
+    height: 2em;
+    border: 1px solid #b0b8c1;
     text-align: center;
+    font-size: 1.1em;
+    background: #f9fafb;
+    border-radius: 4px;
 }
 
-@media screen and (min-width: 1024px) {
-    body {
-        width: 100%;
-        float: left
+a {
+    color: #1976d2;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.input-group {
+    display: flex;
+    gap: 1.2em;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 0.5em;
+    flex-wrap: wrap;
+}
+
+.input-group label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1em;
+    color: #333;
+    gap: 0.2em;
+    font-weight: 500;
+}
+
+.input-group input[type="number"] {
+    width: 5em;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #b0b8c1;
+    background: #f9fafb;
+    font-size: 1em;
+    margin-top: 0.2em;
+    box-sizing: border-box;
+}
+
+.button-group {
+    display: flex;
+    gap: 0.7em;
+    justify-content: center;
+    margin-bottom: 0.5em;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    min-width: 80px;
+    font-size: 1em;
+    padding: 8px 0;
+}
+
+.preview-label {
+    font-weight: bold;
+    font-size: 1.08em;
+    margin-top: 1.2em;
+    margin-bottom: 0.2em;
+    color: #1976d2;
+    letter-spacing: 0.03em;
+}
+
+#output-markdown.output-markdown {
+    font-family: 'Noto Sans Mono', 'Consolas', 'Menlo', 'monospace';
+    padding: 16px 14px;
+    max-width: 100%;
+    width: 100%;
+    line-height: 1.7;
+    border-radius: 12px;
+    border: 1.5px solid #5865f2;
+    box-shadow: 0 2px 12px rgba(88, 101, 242, 0.07);
+    background: #f5f6fa;
+    font-size: 1.08em;
+    margin-top: 0.2em;
+    min-height: 7em;
+    word-break: break-all;
+    white-space: pre-line;
+    overflow-x: auto;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+
+#output-markdown.output-markdown:focus-within,
+#output-markdown.output-markdown:active {
+    box-shadow: 0 4px 24px rgba(88, 101, 242, 0.13);
+    border: 1.5px solid #4752c4;
+}
+
+#output-markdown strong {
+    font-weight: bold;
+    color: #222;
+}
+
+#output-markdown em {
+    font-style: italic;
+    color: #444;
+}
+
+#output-markdown del {
+    text-decoration: line-through;
+    color: #888;
+}
+
+#output-markdown code {
+    background: #e3e7ef;
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-size: 0.97em;
+    font-family: 'Noto Sans Mono', 'Consolas', monospace;
+    color: #1976d2;
+}
+
+#output-markdown blockquote {
+    border-left: 3px solid #1976d2;
+    margin: 0.3em 0 0.3em 0.5em;
+    padding-left: 0.7em;
+    color: #555;
+    background: #f0f4fa;
+    border-radius: 4px;
+    font-size: 0.98em;
+}
+
+#output-markdown ::selection {
+    background: #b3b8f7;
+    color: #222;
+}
+
+.spoiler {
+    background: #b0b8c1;
+    color: transparent;
+    border-radius: 4px;
+    padding: 0 0.3em;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    user-select: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    text-shadow: none;
+}
+
+.spoiler:hover {
+    background: #a0a8b1;
+}
+
+.spoiler.revealed {
+    color: #222;
+    background: #e3e7ef;
+    user-select: text;
+    transition: color 0.2s, background 0.2s;
+    animation: spoiler-reveal 0.25s cubic-bezier(.4, 2, .6, 1) 1;
+}
+
+@keyframes spoiler-reveal {
+    from {
+        filter: blur(2px);
+        opacity: 0.2;
+    }
+
+    to {
+        filter: blur(0);
+        opacity: 1;
     }
 }
 
-/*スマホ表示*/
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 600px) {
     body {
+        align-items: stretch;
+    }
+
+    main {
+        max-width: 98vw;
+        padding: 12px 2vw 16px 2vw;
+    }
+
+    textarea {
+        font-size: 0.97em;
+    }
+
+    table {
+        font-size: 0.95em;
+    }
+
+    .input-group,
+    .button-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5em;
+    }
+
+    .input-group label {
         width: 100%;
     }
+
+    .button-group button {
+        width: 100%;
+        min-width: unset;
+    }
+
+    #output-markdown.output-markdown {
+        font-size: 0.97em;
+        padding: 10px 4px;
+    }
+
+    .preview-label {
+        font-size: 1em;
+    }
+}
+
+#output-markdown .emoji {
+    font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+    font-size: 1.15em;
+    vertical-align: middle;
 }
