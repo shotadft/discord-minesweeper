@@ -7,9 +7,13 @@
 [![Unlicense License][license-shield]][license-url]
 
 ## Overview
-Discord用のマインスイーパー生成機のフォークです
-UIとか機能とか色々改善しています
+Discord用のマインスイーパー生成機のフォークです<br/>
+UIとか機能とか色々改善しています<br/>
 地味にこのリポジトリが一番最初のフォークだったりします
+
+## Usage
+幅、高さ、地雷の個数を決めて生成ボタンを押すだけ。<br/>
+下の方にDiscordのMarkdown表示を再現したお試しスペースを作ってあります
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
