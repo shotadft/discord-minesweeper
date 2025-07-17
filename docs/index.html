@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="ja" dir="ltr">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://www.shotadft.com/css/sanitize.css">
     <link rel="stylesheet" href="style.css">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@Shotadft0780">
+    <meta name="twitter:site" content="@shotadft">
     <meta property="og:title" content="Discord用マインスイーパー生成機">
     <meta property="og:url" content="https://www.shotadft.com/discord-minesweeper/">
     <meta property="og:locale" content="ja_JP">
@@ -28,7 +28,7 @@
             <textarea id="output" rows="16" cols="100" placeholder="出力結果" readonly></textarea>
             <p>
                 <span id="character-count"></span>
-                <span>(Discordは2000文字まで)</span>
+                <span>(Discordは2000文字まで受け付けます)</span>
             </p>
             <details>
                 <summary>生成結果</summary>
@@ -39,7 +39,6 @@
         <p>Hosted by <a href="https://www.shotadft.com/">shotadft.com</a></p>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript">function getRandomInt(a){return Math.floor(Math.random()*Math.floor(a))}function generate(){var a=$("#output"),b=document.getElementById("character-count"),d=document.getElementById("table");const e=parseInt($("#width").val()),f=parseInt($("#height").val()),g=parseInt($("#count").val());g>(e-1)*(f-1)&&(g=(e-1)*(f-1));for(var h=Array(f),j=0;j<f;++j)h[j]=Array(e).fill(0);for(;d.rows[0];)d.deleteRow(0);for(var k,l=0;l<g;++l){for(k=!0;k;){var j=getRandomInt(f),m=getRandomInt(e);0<=h[j][m]&&(k=!1)}h[j][m]=-1e4;for(var n=j-1;n<=j+1;++n)if(!(0>n||f<=n))for(var o=m-1;o<=m+1;++o)0>o||e<=o||h[n][o]++}for(var p,q="",j=0;j<f;++j){p=d.insertRow();for(var s,m=0;m<e;++m)switch(s=p.insertCell(),0>h[j][m]?s.appendChild(document.createTextNode("x")):0<h[j][m]&&s.appendChild(document.createTextNode(h[j][m])),h[j][m]){case 0:q+="||:zero:||";break;case 1:q+="||:one:||";break;case 2:q+="||:two:||";break;case 3:q+="||:three:||";break;case 4:q+="||:four:||";break;case 5:q+="||:five:||";break;case 6:q+="||:six:||";break;case 7:q+="||:seven:||";break;case 8:q+="||:eight:||";break;default:q+="||:bomb:||";}q+="\n"}return a.val(q),b.innerText=q.length+" \u6587\u5B57",!1}function copy(){const a=`${$("#output").val()}`;navigator.clipboard.writeText(a).then(()=>{console.log("Copy Success")})}function clear(){$("#output").val("")}
-    </script>
+    <script type="text/javascript">function getRandomInt(a){return Math.floor(Math.random()*Math.floor(a))}function generate(){var a=$("#output"),b=document.getElementById("character-count"),d=document.getElementById("table");const e=parseInt($("#width").val()),f=parseInt($("#height").val()),g=parseInt($("#count").val());g>(e-1)*(f-1)&&(g=(e-1)*(f-1));for(var h=Array(f),j=0;j<f;++j)h[j]=Array(e).fill(0);for(;d.rows[0];)d.deleteRow(0);for(var k,l=0;l<g;++l){for(k=!0;k;){var j=getRandomInt(f),m=getRandomInt(e);0<=h[j][m]&&(k=!1)}h[j][m]=-1e4;for(var n=j-1;n<=j+1;++n)if(!(0>n||f<=n))for(var o=m-1;o<=m+1;++o)0>o||e<=o||h[n][o]++}for(var p,q="",j=0;j<f;++j){p=d.insertRow();for(var s,m=0;m<e;++m)switch(s=p.insertCell(),0>h[j][m]?s.appendChild(document.createTextNode("x")):0<h[j][m]&&s.appendChild(document.createTextNode(h[j][m])),h[j][m]){case 0:q+="||:zero:||";break;case 1:q+="||:one:||";break;case 2:q+="||:two:||";break;case 3:q+="||:three:||";break;case 4:q+="||:four:||";break;case 5:q+="||:five:||";break;case 6:q+="||:six:||";break;case 7:q+="||:seven:||";break;case 8:q+="||:eight:||";break;default:q+="||:bomb:||";}q+="\n"}return a.val(q),b.innerText=q.length+" \u6587\u5B57",!1}function copy(){const a=`${$("#output").val()}`;navigator.clipboard.writeText(a).then(()=>{console.log("Copy Success")})}function clear(){$("#output").val("")}</script>
 </body>
 </html>
