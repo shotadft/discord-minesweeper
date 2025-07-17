@@ -5,7 +5,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![Unlicense License][license-shield]][license-url]
-[![App Version][version-shield]][header-id]
 
 ## Overview
 Discord用のマインスイーパー生成機のフォークです
