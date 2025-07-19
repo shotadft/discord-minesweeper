@@ -2,14 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
+    font-family: "Noto Sans", "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    color: #222;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: "Noto Sans", "Noto Sans JP", sans-serif;
-    font-size: 15px;
-    color: #222;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     background: #f4f6fa;
     line-height: 1.6;
     margin: 0;
@@ -118,7 +120,7 @@ textarea {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     background: #f9fafb;
     font-size: 1em;
-    margin-top: 0.5em;
+    margin: 0.5em 2rem;
     transition: border 0.2s;
 }
 
@@ -247,7 +249,7 @@ a:hover {
     box-shadow: 0 2px 12px rgba(88, 101, 242, 0.07);
     background: #f5f6fa;
     font-size: 1.08em;
-    margin-top: 0.2em;
+    margin: 0.2em 2rem;
     min-height: 7em;
     word-break: break-all;
     white-space: pre-line;
